@@ -7,6 +7,8 @@ A modern, lightweight task management application built with React, demonstratin
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.16-cyan?logo=tailwindcss)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
+
+
 ---
 
 ## Features
