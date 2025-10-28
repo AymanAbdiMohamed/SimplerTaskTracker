@@ -1,66 +1,64 @@
-# Vercel Deployment Guide
+# Railway Deployment Guide
 
 ## Prerequisites
-- Vercel account
+- Railway account
 - GitHub repository (optional but recommended)
 
 ## Deployment Steps
 
-### 1. Install Vercel CLI
+### 1. Install Railway CLI (optional but recommended)
 ```bash
-npm i -g vercel
+npm i -g @railway/cli
 ```
-
-### 2. Set Environment Variables
-Create a `.env.local` file in your project root:
-```
-VITE_API_URL=https://your-vercel-app-url.vercel.app/api/tasks
-```
-
-Or set them in Vercel dashboard under Project Settings > Environment Variables.
-
-### 3. Deploy
-Option A: Using Vercel CLI
-```bash
-vercel --prod
-```
-
-Option B: Using Vercel Dashboard
-1. Connect your GitHub repository
-2. Vercel will automatically detect the framework (Vite)
-3. Configure environment variables
-4. Deploy
-
-## Configuration Files Created
-
-### `vercel.json`
-- Configures build settings for Vercel
-- Sets up routing for SPA (Single Page Application)
-- Handles API rewrites if needed
 
 ### `.env.example`
 - Template for environment variables
 - Copy to `.env.local` for local development
 
-## Important Notes
+### 2. Configure Environment Variables
+In Railway project settings, add:
+```
+PORT=3001
+```
 
-1. **API Configuration**: The app now uses environment variables for the API URL
-2. **Build Process**: Uses `npm run build:vercel` command
-3. **SPA Routing**: All routes redirect to `index.html` for proper React Router functionality
-4. **Static Output**: Builds to `dist` directory for deployment
+If you deploy the frontend separately (e.g., Vercel/Netlify), set `VITE_API_URL` there to the Railway service URL.
 
-## Production Considerations
+### 3. Deploy json-server Backend
+1. Create new Web Service in Railway from this repository
+2. Build command (optional): `npm install`
+3. Start command: `npm run start`
+4. Expose port `3001`
 
-Since this app uses json-server for mock data, for production you'll need:
-1. A real backend API (Node.js, Python, etc.)
-2. Update `VITE_API_URL` to point to your production API
-3. Deploy backend separately or use Vercel Serverless Functions
+### 4. Deploy Frontend
+Deploy the React app to your preferred static host (e.g., Netlify, Vercel, Railway static site). Run `npm run build` and serve `dist/`.
+
+## Troubleshooting 502 Errors
+
+1. Ensure the service is awake (Railway free tier may sleep after inactivity)
+2. Confirm `npm run start` is executing json-server and listening on `0.0.0.0`
+3. Verify `PORT` environment variable matches the port exposed by Railway
+4. Check logs (`railway logs`) for runtime errors
+5. Make sure frontend `VITE_API_URL` points to `https://<service>.up.railway.app`
 
 ## Local Development
 
-For local development with the mock API:
+Run the mock API and frontend together:
 ```bash
-npm start
+npm run dev:full
 ```
 
-This runs both the json-server (port 3001) and Vite dev server simultaneously.
+Frontend only:
+```bash
+npm run dev
+```
+
+Mock API only:
+```bash
+npm run server
+```
+
+## Production Considerations
+
+- Railway free tier storage is ephemeral; json-server data resets on redeploy
+- For persistent data, connect Railway to a database (Postgres, etc.)
+- Secure the API if exposing it publicly (CORS, auth, etc.)
