@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-// API base URL - use environment variable for production, localhost for development
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/tasks';
+// API base URL: configurable for Railway deployment, defaults to local json-server
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = `${API_BASE_URL}/tasks`;
 
 /**
  * GET request - Fetch all tasks
