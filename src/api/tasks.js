@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// API base URL for json-server
-const API_URL = 'http://localhost:3001/tasks';
+// API base URL - use environment variable for production, localhost for development
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/tasks';
 
 /**
  * GET request - Fetch all tasks
