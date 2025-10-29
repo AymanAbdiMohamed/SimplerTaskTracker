@@ -1,7 +1,7 @@
 let tasks = [
   { id: 1, title: "Learn React", description: "Study React fundamentals", completed: false },
   { id: 2, title: "Build Task Tracker", description: "Create a task tracking application", completed: true },
-  { id: 3, title: "Deploy to Railway", description: "Deploy the json-server backend to Railway", completed: false }
+  { id: 3, title: "Deploy to Netlify", description: "Connect the frontend to a Netlify-hosted API", completed: false }
 ];
 
 export default async function handler(req, res) {

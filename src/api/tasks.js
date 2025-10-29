@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// API base URL: configurable for Railway deployment, defaults to local json-server
+// API base URL: configurable for Netlify deployment (or other hosts), defaults to local json-server
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 const API_URL = `${API_BASE_URL}/tasks`;
 
