@@ -135,7 +135,7 @@ npm install
 Run both the API server and development server concurrently:
 
 ```bash
-npm start
+npm run dev:full
 ```
 
 This command will:
@@ -161,7 +161,8 @@ npm run dev
 
 | Command | Description |
 |---------|-------------|
-| `npm start` | Run both API and dev server concurrently |
+| `npm start` | Serve production build + API (Railway deployment) |
+| `npm run dev:full` | Run both API and dev server concurrently |
 | `npm run dev` | Start Vite development server only |
 | `npm run server` | Start JSON Server API only |
 | `npm run build` | Build for production |
