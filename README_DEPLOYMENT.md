@@ -27,7 +27,8 @@ If you deploy the frontend separately (e.g., Vercel/Netlify), set `VITE_API_URL`
 1. Create new Web Service in Railway from this repository
 2. Build command (optional): `npm install`
 3. Start command: `npm run start`
-4. Expose port `3001`
+4. Ensure `npm run build` runs during Railway build so `/dist` exists
+5. Expose port `3001`
 
 ### 4. Deploy Frontend
 Deploy the React app to your preferred static host (e.g., Netlify, Vercel, Railway static site). Run `npm run build` and serve `dist/`.

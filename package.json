@@ -8,9 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "json-server --watch db.json --port 3001",
+    "server": "json-server --watch db.json --host 0.0.0.0 --port ${PORT:-3001}",
     "dev:full": "concurrently \"npm run server\" \"npm run dev\" --names \"API,APP\" --prefix-colors \"blue,green\"",
-    "start": "json-server --watch db.json --host 0.0.0.0 --port ${PORT:-3001}"
+    "start": "json-server --watch db.json --host 0.0.0.0 --port ${PORT:-3001} --static ./dist"
   },
   "dependencies": {
     "axios": "^1.7.9",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@railway/cli": "^4.11.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
