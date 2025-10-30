@@ -1,4 +1,4 @@
-# Simple Task Tracker
+# SimplerTaskTracker
 
 A modern, lightweight task management application built with React, demonstrating best practices in component-based architecture, RESTful API integration, and responsive design.
 
