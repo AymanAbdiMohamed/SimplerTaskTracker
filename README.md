@@ -2,6 +2,8 @@
 
 A modern, lightweight task management application built with React, demonstrating best practices in component-based architecture, RESTful API integration, and responsive design.
 
+> **Backend Repository:** The JSON API powering this frontend lives in a separate project: [SimplerTaskTrackerBackend](https://github.com/MrNawir/SimplerTaskTrackerBackend/). The backend service is deployed on Railway and serves the Netlify-hosted frontend.
+
 ![React](https://img.shields.io/badge/React-19.1.1-blue?logo=react)
 ![Vite](https://img.shields.io/badge/Vite-7.1.11-purple?logo=vite)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.16-cyan?logo=tailwindcss)
