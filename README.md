@@ -1,11 +1,15 @@
-# Simple Task Tracker
+# SimplerTaskTracker
 
 A modern, lightweight task management application built with React, demonstrating best practices in component-based architecture, RESTful API integration, and responsive design.
+
+> **Backend Repository:** The JSON API powering this frontend lives in a separate project: [SimplerTaskTrackerBackend](https://github.com/MrNawir/SimplerTaskTrackerBackend/). The backend service is deployed on Railway and serves the Netlify-hosted frontend.
 
 ![React](https://img.shields.io/badge/React-19.1.1-blue?logo=react)
 ![Vite](https://img.shields.io/badge/Vite-7.1.11-purple?logo=vite)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.16-cyan?logo=tailwindcss)
 ![License](https://img.shields.io/badge/License-MIT-green)
+
+
 
 ---
 
@@ -133,7 +137,7 @@ npm install
 Run both the API server and development server concurrently:
 
 ```bash
-npm start
+npm run dev:full
 ```
 
 This command will:
@@ -155,11 +159,60 @@ npm run dev
 
 ---
 
+## Deployment
+
+### Backend (Railway)
+1. Navigate to the backend package located at `../SimplerTaskTrackerBackend`.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Install and authenticate the Railway CLI:
+   ```bash
+   npm install -g @railway/cli
+   railway login
+   ```
+4. Initialize or link a Railway project from the backend directory:
+   ```bash
+   railway init
+   ```
+5. Deploy the service with the default start command (`npm run start`). Railway injects `PORT`, which `json-server` reads automatically.
+   ```bash
+   railway up
+   ```
+6. Once deployed, copy the public service URL (e.g. `https://<service>.up.railway.app`). This value is required by the frontend.
+7. Troubleshooting tips:
+   - Ensure `PORT` isn’t hard-coded; the backend reads `process.env.PORT` via the npm script.
+   - Verify CORS headers in Railway logs (`json-server` exposes permissive defaults, but confirm no middleware is altering them).
+   - Keep the Railway project on an active plan if you need the service warm at all times.
+
+### Frontend (Netlify)
+
+#### Connect the Repository
+1. Create a new site in Netlify and link it to this repository (or push via the Netlify CLI).
+2. Netlify will install dependencies and run the configured build command on each deploy.
+
+#### Build & Publish Settings
+- **Build command:** `npm run build`
+- **Publish directory:** `dist`
+
+#### Environment Variables
+- `VITE_API_URL` — set this to the Railway backend URL obtained earlier, e.g. `https://simplertasktrackerbackend-production.up.railway.app`.
+- Leave the variable unset for local development to fall back to `http://localhost:3001`.
+
+#### Trigger a Deploy
+1. Redeploy the Netlify site after updating environment variables.
+2. Verify CRUD operations from the deployed frontend hit the Railway API (`/tasks`).
+3. Check Netlify build logs and Railway service logs for runtime errors if requests fail.
+
+---
+
 ## Available Scripts
 
 | Command | Description |
 |---------|-------------|
-| `npm start` | Run both API and dev server concurrently |
+| `npm start` | Serve production build + API (local production preview) |
+| `npm run dev:full` | Run both API and dev server concurrently |
 | `npm run dev` | Start Vite development server only |
 | `npm run server` | Start JSON Server API only |
 | `npm run build` | Build for production |

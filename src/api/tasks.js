@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-// API base URL for json-server
-const API_URL = 'http://localhost:3001/tasks';
+// API base URL: configurable for Netlify deployment (or other hosts), defaults to local json-server
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:3001').replace(/\/$/, '');
+const API_URL = `${API_BASE_URL}/tasks`;
 
 /**
  * GET request - Fetch all tasks
